@@ -1,26 +1,26 @@
 {
     "redirects":[
         {
-            "src":"./app.js",
-            "use":"@vercel/node"
+            "source":"./app.js",
+            "destination":"@vercel/node"
         },
         {
-            "src":"build/**",
-            "use":"@vercel/static"
+            "source":"build/**",
+            "destination":"@vercel/static"
         },
         {
-            "src":"/posts",
-            "dest":"@vercel/static"
+            "source":"/posts",
+            "destination":"@vercel/static"
         }
     ],
     "routes":[
         {
-            "src":"/posts/(.*)",
-            "dest":"@vercel/static"
+            "source":"/posts/(.*)",
+            "destination":"@vercel/static"
         },
         {
-            "src":"/(.*)",
-            "dest":"app.js"
+            "source":"/(.*)",
+            "destination":"app.js"
         }
     ]
 }
