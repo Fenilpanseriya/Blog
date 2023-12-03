@@ -3,12 +3,19 @@ import {useDispatch, useSelector} from"react-redux"
 import Header from './Header';
 import AllPosts from '../pages/AllPosts';
 import Footer from './Footer';
-import { changeStatus } from '../store/auhtSlice';
+import Login from "./Login";
+import { changeStatus, login } from '../store/auhtSlice';
 const First = () => {
-    const data = useSelector((state) => state.users.status);
+    const data = localStorage.getItem("status");
     const dispatch=useDispatch();
     useEffect(()=>{
-        dispatch(changeStatus());
+        if(data){
+          dispatch(login({"status":true,userData:{
+              "email":localStorage.getItem("email"),
+              "password":localStorage.getItem("password")
+            }
+          }))
+        }
     },[data])
   return (
     <>
@@ -16,11 +23,11 @@ const First = () => {
     <div className="w-full block">
       <Header />
       
-      <AllPosts/>
+      {localStorage.getItem("status")?<AllPosts/>:null}
       
       <Footer />
     </div>
-  </div>:<p>hello</p>
+  </div>:<Login/>
   }
   </>
   )

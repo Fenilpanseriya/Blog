@@ -27,21 +27,12 @@ function Header() {
       active: !authStatus,
   },
   {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-  },
-  {
       name: "Add Post",
       slug: "/add-post",
       active: authStatus,
-  },
-  {
-    name: "Edit Post",
-    slug: "/edit-post",
-    active: authStatus,
-}
-  ]
+  }
+  
+]
 
 
   return (
@@ -50,7 +41,7 @@ function Header() {
         <nav className='flex'>
           <div className='mr-4'>
             <Link to='/'>
-              <Logo width='70px'   />
+              <Logo width='40px' height='40px'   />
 
               </Link>
           </div>
@@ -67,7 +58,7 @@ function Header() {
               </li>
             ) : null
             )}
-            {authStatus && (
+            {localStorage.getItem("status") && (
               <li>
                 <LogoutBtn />
               </li>

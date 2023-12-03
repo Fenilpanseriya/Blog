@@ -32,6 +32,8 @@ function Login() {
             console.log("returned email is "+response.data.email)
             if(response.data){
                 localStorage.setItem("email",data.email);
+                localStorage.setItem("password",data.password)
+                localStorage.setItem("status",true);
                 dispatch(authLogin(data))
                 navigate("/");
             }

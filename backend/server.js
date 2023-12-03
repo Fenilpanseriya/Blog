@@ -3,11 +3,12 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from"dotenv"
+import path from "path"
 import Blog from "./model/blogSchema.mjs";
 import { validToken } from "./middleware/Valid.mjs";
 import { registerUser,loginUser, createPost, updatePost, logoutUser, getAllPosts,getOnePost, deletePost} from "./Controller/Auth.mjs";
 const app=express()
-
+const __dirname=path.resolve();
 const options={
     "origin":"http://localhost:3000"
 }
@@ -18,6 +19,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 dotenv.config();
+app.get("/",(req,res)=>{
+  app.use(express.static(path.resolve(__dirname,"build")));
+  res.sendFile(path.resolve(__dirname,"build","index.html"));
+  
+})
 app.listen(process.env.PORT,()=>{
     console.log("sever conneted successfully on port 6060")
 })

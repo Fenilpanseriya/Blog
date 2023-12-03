@@ -7,6 +7,7 @@ function LogoutBtn() {
     const data=useSelector(state=>state.users.status);
     const logoutHandler = () => {
         dispatch(logout())
+        localStorage.setItem("status",false);
     }
   return (
     <button
